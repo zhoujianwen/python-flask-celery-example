@@ -63,7 +63,7 @@ curl -X GET -H "Content-Type: application/json" localhost:5000/api/bye/test
 ## 注意，在Windows平台下运行，celery终端会提示“Celery ValueError: not enough values to unpack (expected 3, got 0)”
 解决办法：
 
-原网页:![Unable to run tasks under Windows](https://github.com/celery/celery/issues/4081)
+原网页:[Unable to run tasks under Windows](https://github.com/celery/celery/issues/4081)
 
 看别人描述大概就是说win10上运行celery4.x / celery5.x 就会出现这个问题，解决办法如下,原理未知：
 
