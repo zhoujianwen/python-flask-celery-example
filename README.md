@@ -60,6 +60,34 @@ Then, you can access to the API in localhost :
 ```
 curl -X GET -H "Content-Type: application/json" localhost:5000/api/bye/test
 ```
+## 注意，在Windows平台下运行，celery终端会提示“Celery ValueError: not enough values to unpack (expected 3, got 0)”
+解决办法：
+
+原网页:![Unable to run tasks under Windows](https://github.com/celery/celery/issues/4081)
+
+看别人描述大概就是说win10上运行celery4.x / celery5.x 就会出现这个问题，解决办法如下,原理未知：
+
+先安装一个 eventlet
+```
+pip install eventlet
+```
+然后启动worker的时候加一个参数，如下：
+```
+celery -A run.celery worker -l INFO -P eventlet
+```
+然后就可以正常的被调用了。
+发送一个get请示
+```
+curl -X GET -H "Content-Type: application/json" localhost:5000/api/bye/test
+```
+在终端就显示
+```
+[2021-06-21 11:15:24,814: INFO/MainProcess] Task api.resources.main.asynchronous[75b8f49c-331d-4685-9c29-ed6861e000d4] received
+[2021-06-21 11:15:29,871: INFO/MainProcess] Task api.resources.main.asynchronous[75b8f49c-331d-4685-9c29-ed6861e000d4] succeeded in 5.062999999965541s: {'async': 'test'}
+```
+taskid可视化
+![image](https://user-images.githubusercontent.com/13137730/122703075-63180780-d283-11eb-9b58-fecf8b08a47d.png)
+
 
 ## Syntax
 
