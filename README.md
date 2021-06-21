@@ -35,6 +35,10 @@ Moreover, to be able to play with celery, you have to first start Redis, then st
 ```
 celery -A run.celery worker --loglevel=info
 ```
+or
+```
+celery -A run.celery worker -l INFO
+```
 
 Note : It's cleaner to use docker-compose to start the whole application (see the section below).
 
